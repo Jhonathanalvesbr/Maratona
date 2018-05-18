@@ -39,53 +39,70 @@ int main ()
 	int hit = 0, y = 0, i = 0, x = 0; //Contadores
 	int poder = 0; //Possivel escolha de poder para matar o dragao
 	int flag = 0; //Bandeira verdadeiro ou falso
-	int *Magias = (int*) malloc(10000000*sizeof(int));
+	int *Magias = (int*) malloc(magia*sizeof(int));
 	
 	while(1)
 	{
 	
 		scanf("%i %i", &feitico, &magia);
 		
+		Magias = (int*) realloc (Magias,magia*sizeof(int));
+		
 		if(feitico == 0 && magia == 0)
 		{
 			break;
 		}
 		
-		x = 0;
+		i = 0;
 		
-		for(i = 0; i < feitico; i++)
+		for(x = 0; x < feitico; x++)
 		{
-			scanf("%i", &Magias[i]); //So adiciona ao vetor se não existir a magia
-
+			scanf("%i", &poder); //Entrada do usuario das magias conhecidas pelo mago
+			
+			for(y = 0; y < i; y++)
+			{
+				if(Magias[y] == poder) //Compara magias duplicadas
+				{
+					flag = 1;
+					break;
+				}
+			}
+			
+			if(flag == 0)
+			{
+				Magias[i++] = poder; //So adiciona ao vetor se não existir a magia
+			}
+			
+			flag = 0;
 		}
 		
 		quick_sort(Magias, 0, i);
 		
-		
 		hit = 0;
-			for(x = i-magia; x < i; x++) 
-			{
-				if(Magias[hit]+Magias[x] > 0)
-				{
-					printf("%i", Magias[x]); //Printa Resposta Positivo;
-					if(x == feitico)
-					{
-						break;
-					}
-					printf(" ");
-				}
-				else
-				{
-					printf("%i", Magias[hit++]); //Printa Resposta NEGATIVO;
-					if(x == feitico)
-					{
-						break;
-					}
-					printf(" ");
-				}
-			}
-			puts("");
-		}
 		
+		for(x = i-magia; x < i; x++) 
+		{
+			if(Magias[hit]+Magias[x] > 0)
+			{
+				printf("%i", Magias[x]); //Printa Resposta Positivo;
+				if(x == feitico)
+				{
+					break;
+				}
+				printf(" ");
+			}
+			else
+			{
+				printf("%i", Magias[hit++]); //Printa Resposta NEGATIVO;
+				if(x == feitico)
+				{
+					break;
+				}
+				printf(" ");
+			}
+		}
+		puts("");
+	
+	}
 	return 0;
 }
