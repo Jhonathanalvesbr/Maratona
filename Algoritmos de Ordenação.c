@@ -1,5 +1,4 @@
 #include<stdio.h>
-#include<time.h>
 #include<stdlib.h>
 
 void bubble_sort(int vetor[], int quantidade);
