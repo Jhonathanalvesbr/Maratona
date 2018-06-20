@@ -7,7 +7,7 @@ void insertion_sort(int* vetor, int tamanho);
 void selection_sort(int vetor[], int tamanho);
 void imprimir(int vetor[]);
 void quick_sort(int *vetor, int inicio, int fim);
-
+void quick_Sort(int vetor[], int inicio, int fim);
 int repita = 0;
 
 int main()
@@ -21,14 +21,19 @@ int main()
 	//selection_sort(L, 10);
 	//bubble_sort(L, 10);
 	//insertion_sort(L, 10);
-	puts("\nQuick Sort:\n");
-	imprimir(L);
-	puts("");
-	quick_sort(L,0,10);
-	printf("\nRepetiu a lista %i vezes para ordenar.\n\n", repita);
+	//quick_Sort(L, 0, 10);
 	
 	
 	return 0;
+}
+
+void quick_Sort(int vetor[], int inicio, int fim)
+{
+	puts("\nQuick Sort:\n");
+	imprimir(vetor);
+	puts("");
+	quick_sort(vetor,0,10);
+	printf("\nRepetiu a lista %i vezes para ordenar.\n\n", repita);
 }
 
 void quick_sort(int *vetor, int inicio, int fim)
@@ -39,7 +44,6 @@ void quick_sort(int *vetor, int inicio, int fim)
    	n = fim-1;
    	
    	pivo = vetor[(inicio + fim) / 2]; //Meio
-   	printf("%i\n", pivo);
    	
 	do
    	{
